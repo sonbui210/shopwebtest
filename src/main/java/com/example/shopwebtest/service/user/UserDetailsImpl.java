@@ -1,7 +1,6 @@
 package com.example.shopwebtest.service.user;
 
 import com.example.shopwebtest.entities.user.Users;
-import lombok.Data;
 import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
