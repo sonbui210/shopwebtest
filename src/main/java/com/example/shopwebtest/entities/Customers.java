@@ -1,6 +1,8 @@
 package com.example.shopwebtest.entities;
 
 
+import com.example.shopwebtest.entities.user.Users;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.util.Date;
 @Entity
 @Data
 @Table(name = "customers")
+@JsonIgnoreProperties({"password"})
 public class Customers {
 
     @Id
@@ -17,9 +20,11 @@ public class Customers {
 
     private String name;
 
-    private String email;
 
     //tam thoi de vay, sau do lien ket voi tai khoan sau
+
+    private String email;
+
     private String password;
 
     private String phone;
@@ -27,5 +32,10 @@ public class Customers {
     private Date registerDated;
 
     private int status;
+
+    @JsonIgnoreProperties({"password", "roles", "email"})
+    @OneToOne
+    @JoinColumn(name = "users_id")
+    private Users users;
 
 }
