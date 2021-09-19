@@ -20,7 +20,13 @@ public class OrderService {
 
     public ServiceResult findById(int id) {
         ServiceResult result = new ServiceResult();
-        result.setData(orderRepository.findById(id).orElse(null));
+        if (!orderRepository.findById(id).isPresent()) {
+            result.setStatus(ServiceResult.Status.FAILED);
+            result.setMessage("Order not found!");
+        } else {
+            result.setData(orderRepository.findById(id));
+            result.setMessage("Order found!");
+        }
         return  result;
     }
 
