@@ -44,7 +44,7 @@ public class ProductService {
             result.setStatus(ServiceResult.Status.FAILED);
             result.setMessage("Product not found!");
         } else {
-            productRepository.save(products);
+            result.setData(productRepository.save(products));
             result.setMessage("Product updated!");
         }
 
