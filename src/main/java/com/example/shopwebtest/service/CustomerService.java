@@ -40,7 +40,7 @@ public class CustomerService {
     public ServiceResult create(Customers customers) {
         ServiceResult result = new ServiceResult();
 
-        customers.setEmail(userRepository.findByEmail(customers.getEmail())));
+        //customers.setEmail(userRepository.findByEmail(customers.getEmail()));
 
         result.setData(customerRepository.save(customers));
         result.setMessage("Customer created!");
