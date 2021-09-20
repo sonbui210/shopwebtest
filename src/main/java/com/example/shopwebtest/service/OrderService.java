@@ -1,7 +1,9 @@
 package com.example.shopwebtest.service;
 
 
+import com.example.shopwebtest.entities.OrderDetail;
 import com.example.shopwebtest.entities.Orders;
+import com.example.shopwebtest.repository.OrderDetailRepository;
 import com.example.shopwebtest.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,9 @@ public class OrderService {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    OrderDetailRepository orderDetailRepository;
 
     public ServiceResult findAll() {
         ServiceResult result = new ServiceResult();

@@ -2,6 +2,7 @@ package com.example.shopwebtest.entities;
 
 
 import com.example.shopwebtest.entities.user.Users;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -33,7 +34,8 @@ public class Customers {
 
     private int status;
 
-    @JsonIgnoreProperties({"password", "roles", "email"})
+    @JsonIgnore
+//    @JsonIgnoreProperties({"password", "roles", "email"})
     @OneToOne
     @JoinColumn(name = "users_id")
     private Users users;

@@ -2,7 +2,9 @@ package com.example.shopwebtest.service;
 
 
 import com.example.shopwebtest.entities.OrderDetail;
+import com.example.shopwebtest.entities.Products;
 import com.example.shopwebtest.repository.OrderDetailRepository;
+import com.example.shopwebtest.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ public class OrderDetailService {
 
     @Autowired
     OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     public ServiceResult findAll() {
         ServiceResult result = new ServiceResult();
@@ -32,6 +37,9 @@ public class OrderDetailService {
 
     public ServiceResult create(OrderDetail orderDetail) {
         ServiceResult result =new ServiceResult();
+
+        orderDetail.setUnitPrice(orderDetail.getProducts().getUnitPrice());
+
         result.setData(orderDetailRepository.save(orderDetail));
         result.setMessage("Order Detail created!");
         return result;
