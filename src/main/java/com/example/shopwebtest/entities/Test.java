@@ -48,6 +48,16 @@ public class Test {
 
     private int second = dateTest.get(Calendar.SECOND);
 
+    @Column(nullable = true)
+    private int a;
 
+    @Column(nullable = true)
+    private int b;
+
+    @Column(nullable = true)
+    private double thuong;
+
+    @Column(nullable = true)
+    private int tong;
 
 }

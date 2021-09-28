@@ -40,6 +40,16 @@ public class TestService {
     public ServiceResult create(Test test) {
         ServiceResult result =new ServiceResult();
 
+        test.setTong(test.getA() + test.getB());
+        try {
+            float testException = test.getA()/test.getB();
+            test.setThuong(testException);
+            result.setMessage("Ket qua la " + testException);
+        } catch (ArithmeticException e) {
+            result.setMessage("So chia het cho 0 khong thoa man");
+        }
+
+
         result.setData(testReprository.save(test));
         return result;
 
@@ -48,14 +58,21 @@ public class TestService {
     public ServiceResult update(Test test) {
         ServiceResult result= new ServiceResult();
 
-        test.setCreateAt(testReprository.findById(test.getId()).get().getCreateAt());
-
         if (!testReprository.findById(test.getId()).isPresent()) {
             result.setStatus(ServiceResult.Status.FAILED);
             result.setMessage("Khong tim thay!!!!");
         } else {
+            test.setTong(test.getA() + test.getB());
+            try {
+                float testException = test.getA()/test.getB();
+                test.setThuong(testException);
+                result.setMessage("Ket qua la " + testException);
+            } catch (ArithmeticException e) {
+                result.setMessage("So chia het cho 0 khong thoa man");
+            }
+            test.setCreateAt(testReprository.findById(test.getId()).get().getCreateAt());
             result.setData(testReprository.save(test));
-            result.setMessage("Da update!");
+            //result.setMessage("Da update!");
         }
         return result;
 
