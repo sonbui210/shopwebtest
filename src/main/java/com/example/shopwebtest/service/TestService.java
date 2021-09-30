@@ -10,6 +10,8 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.print.attribute.standard.DateTimeAtCreation;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class TestService {
@@ -48,6 +50,28 @@ public class TestService {
         } catch (ArithmeticException e) {
             result.setMessage("So chia het cho 0 khong thoa man");
         }
+        // mang 9 so bao gom xxx.xxx.xxx
+
+        int isbn = test.getIsnb();
+
+        int tongisbn= 0;
+        for (int i = 1; i < 10; i++) {
+            //System.out.println(Math.floor(isbn/Math.pow(10,9-i)));
+            tongisbn+=(Math.floor(isbn/Math.pow(10,9-i))*i);
+            System.out.println(tongisbn);
+            isbn = (int)(isbn%Math.pow(10,(9-i)));
+            //System.out.println(isbn);
+        }
+        System.out.println(tongisbn);
+        int check = tongisbn%11;
+        if (check != 10) {
+            test.setIsnbcheck(test.getIsnb()*10 + check );
+            System.out.println(test.getIsnbcheck());
+        } else {
+            test.setIsnbcheck(test.getIsnb());
+            System.out.println(test.getIsnbcheck());
+        }
+
 
 
         result.setData(testReprository.save(test));

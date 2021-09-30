@@ -60,4 +60,10 @@ public class Test {
     @Column(nullable = true)
     private int tong;
 
+    @Column(nullable = true)
+    private int isnb;
+
+    @Column(nullable = true)
+    private int isnbcheck;
+
 }
